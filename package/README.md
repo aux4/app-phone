@@ -27,7 +27,7 @@ It requires `mkcert`, serves HTTPS on port 9443, and serves only the public loca
 
 ## Calls and privacy
 
-Select one or more contacts and press Call. Invitees can accept or decline. A channel call invites the current membership; up to eight participants can connect at once. People can join an ongoing call after declining, provided they are still members. On-call indicators disclose only calls visible to you.
+Use the phone action beside a contact to call them. Choose Group call to select several people, then press Start call. Contacts and Recents use the shared Form Engine List and its search, including the built-in clear button. Invitees can accept or decline. A channel call invites the current membership; up to eight participants can connect at once. People can join an ongoing call after declining, provided they are still members. On-call indicators disclose only calls visible to you.
 
 All APIs require the host-authenticated principal. Phone resolves channel membership through Chat's membership-only command on every call operation. It looks up the channel from the stored call, never from client authority fields. Removed members lose signaling access; peers remove them on the next poll. Direct calls only accept registered users. No recording or media storage is implemented.
 

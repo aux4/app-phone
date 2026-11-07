@@ -29,10 +29,12 @@ try{
   await page.route('**/api/apps/phone/action/phone/*',async route=>{
    const req=route.request(),action=req.url().split('/').at(-1);try{const result=await phoneAction(action==='calls'?'list':action,{sub:user.id,name:user.name},req.postDataJSON()||{}, {},deps);await route.fulfill({json:result});}catch(e){await route.fulfill({status:403,json:{error:e.message}});}
   });
-  await page.goto(origin);await page.getByRole('button',{name:/Alice|Bob/}).first().waitFor();pages.push(page);
+  await page.goto(origin);await page.locator('fe-list-item').first().waitFor();pages.push(page);
  }
  const [alice,bob,eve]=pages;
- await alice.locator('button.person').filter({hasText:'Bob'}).click();await alice.locator('button.person').filter({hasText:'Eve'}).click();await alice.getByRole('button',{name:'Call',exact:true}).click();
+ assert.equal(await alice.locator('.phone-app header').count(),0);
+ await alice.getByRole('textbox',{name:'Search contacts'}).fill('Bob');await alice.waitForFunction(()=>document.querySelectorAll('phone-app fe-list-item').length===1);await alice.locator('.fe-list-search').getByRole('button',{name:'Clear search'}).click();await alice.waitForFunction(()=>document.querySelectorAll('phone-app fe-list-item').length===2);
+ await alice.getByRole('button',{name:'Group call',exact:true}).click();await alice.locator('fe-list-item').filter({hasText:'Bob'}).getByRole('button',{name:'Add to call'}).click();await alice.locator('fe-list-item').filter({hasText:'Eve'}).getByRole('button',{name:'Add to call'}).click();await alice.getByRole('button',{name:'Start call',exact:true}).click();
  await bob.locator('phone-dock').getByRole('button',{name:'Accept',exact:true}).click();
  await eve.locator('phone-dock').getByRole('button',{name:'Accept',exact:true}).click();
  for(const page of pages)await page.waitForFunction(()=>{const m=window.__aux4PhoneController.media;return m?.peers.size===2&&[...m.peers.values()].every(pc=>pc.connectionState==='connected');},null,{timeout:30000});
