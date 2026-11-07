@@ -5,6 +5,7 @@
   "theme": "v2",
   "components": "static/phone.js",
   "api": [
+    {"action":"phone-contacts","method":"GET","path":"/action/phone/contacts","command":"action contacts"},
     {"action":"phone-calls","method":"GET","path":"/action/phone/calls","command":"calls"},
     {"action":"phone-start","method":"POST","path":"/action/phone/start","command":"action start"},
     {"action":"phone-accept","method":"POST","path":"/action/phone/accept","command":"action accept"},
