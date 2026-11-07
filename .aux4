@@ -1,0 +1,1 @@
+{"profiles":[{"name":"main","commands":[{"name":"build","execute":["node ${packageDir}/build.mjs"],"help":{"text":"Validate Phone JavaScript and package manifests"}}]}]}

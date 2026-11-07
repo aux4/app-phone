@@ -1,0 +1,6 @@
+.env
+.env.*
+certs/
+*.pem
+node_modules/
+output/

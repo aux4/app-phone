@@ -1,0 +1,12 @@
+{
+  "name": "phone",
+  "label": "PhoneApp",
+  "tag": "phone-app",
+  "base": "LightElement",
+  "icon": "phone",
+  "components": "static/phone.js",
+  "propsSchema": {},
+  "docs": {
+    "description": "Phone contacts and persistent call controls. Optional PhoneCallButton embeds channel calling in Chat."
+  }
+}

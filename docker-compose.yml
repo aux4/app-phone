@@ -3,6 +3,7 @@ services:
     build: .
     environment:
       PHONE_PORT: 8787
+      PHONE_HOST: 0.0.0.0
       PHONE_SERVICE_SECRET: ${PHONE_SERVICE_SECRET:?set a random provider secret}
     ports:
       - "127.0.0.1:8787:8787"

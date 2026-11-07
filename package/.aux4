@@ -4,16 +4,153 @@
   "version": "0.1.0",
   "description": "Authenticated aux4 audio calls with a local WebRTC signaling provider.",
   "license": "Apache-2.0",
-  "tags": ["app", "phone", "audio", "webrtc", "platform"],
-  "dependencies": ["aux4/platform"],
+  "tags": [
+    "app",
+    "phone",
+    "audio",
+    "webrtc",
+    "platform"
+  ],
+  "dependencies": [
+    "aux4/platform"
+  ],
   "profiles": [
-    {"name":"platform:app","commands":[{"name":"phone","execute":["profile:platform:app:phone"],"help":{"text":"Phone calling app"}}]},
-    {"name":"platform:app:phone","commands":[
-      {"name":"meta","execute":["cat ${packageDir}/app.json"],"help":{"text":"Phone app metadata and UI"}},
-      {"name":"ui","execute":["cat ${packageDir}/app.json"],"help":{"text":"Phone app UI and API routes"}},
-      {"name":"provider","execute":["node ${packageDir}/lib/phone-service.mjs"],"help":{"text":"Run the local signaling provider"}},
-      {"name":"calls","execute":["node ${packageDir}/lib/phone.mjs list values(principal, body, query)"],"help":{"text":"List calls visible to the signed-in user","variables":[{"name":"principal","private":true,"default":"{}"},{"name":"body","private":true,"default":"{}"},{"name":"query","private":true,"default":"{}"}]}},
-      {"name":"action","execute":["node ${packageDir}/lib/phone.mjs value(action) values(principal, body, query)"],"help":{"text":"Execute an authenticated phone action","variables":[{"name":"action","arg":true},{"name":"principal","private":true,"default":"{}"},{"name":"body","private":true,"default":"{}"},{"name":"query","private":true,"default":"{}"}]}}
-    ]}
+    {
+      "name": "platform:app",
+      "commands": [
+        {
+          "name": "phone",
+          "execute": [
+            "profile:platform:app:phone"
+          ],
+          "help": {
+            "text": "Phone calling app"
+          }
+        }
+      ]
+    },
+    {
+      "name": "platform:app:phone",
+      "commands": [
+        {
+          "name": "meta",
+          "execute": [
+            "cat ${packageDir}/app.json"
+          ],
+          "help": {
+            "text": "Phone app metadata and UI"
+          }
+        },
+        {
+          "name": "ui",
+          "execute": [
+            "cat ${packageDir}/app.json"
+          ],
+          "help": {
+            "text": "Phone app UI and API routes"
+          }
+        },
+        {
+          "name": "provider",
+          "execute": [
+            "node ${packageDir}/lib/phone-service.mjs"
+          ],
+          "help": {
+            "text": "Run the local signaling provider"
+          }
+        },
+        {
+          "name": "calls",
+          "execute": [
+            "node ${packageDir}/lib/phone.mjs list values(principal, body, query)"
+          ],
+          "help": {
+            "text": "List calls visible to the signed-in user",
+            "variables": [
+              {
+                "name": "principal",
+                "private": true,
+                "default": "{}",
+                "text": "Authenticated platform principal"
+              },
+              {
+                "name": "body",
+                "private": true,
+                "default": "{}",
+                "text": "JSON request body"
+              },
+              {
+                "name": "query",
+                "private": true,
+                "default": "{}",
+                "text": "JSON query parameters"
+              }
+            ]
+          }
+        },
+        {
+          "name": "action",
+          "execute": [
+            "node ${packageDir}/lib/phone.mjs value(action) values(principal, body, query)"
+          ],
+          "help": {
+            "text": "Execute an authenticated phone action",
+            "variables": [
+              {
+                "name": "action",
+                "arg": true,
+                "text": "Phone action name"
+              },
+              {
+                "name": "principal",
+                "private": true,
+                "default": "{}",
+                "text": "Authenticated platform principal"
+              },
+              {
+                "name": "body",
+                "private": true,
+                "default": "{}",
+                "text": "JSON request body"
+              },
+              {
+                "name": "query",
+                "private": true,
+                "default": "{}",
+                "text": "JSON query parameters"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "platform:component",
+      "commands": [
+        {
+          "name": "phone",
+          "execute": [
+            "profile:platform:component:phone"
+          ],
+          "help": {
+            "text": "Phone call controls"
+          }
+        }
+      ]
+    },
+    {
+      "name": "platform:component:phone",
+      "commands": [
+        {
+          "name": "meta",
+          "execute": [
+            "cat ${packageDir}/component.json"
+          ],
+          "help": {
+            "text": "Phone component metadata"
+          }
+        }
+      ]
+    }
   ]
 }

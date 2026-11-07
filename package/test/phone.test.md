@@ -1,11 +1,21 @@
-# aux4/app-phone
+# Phone
 
-## provider source is present
+## app metadata
 
 ```execute
-test -f package/lib/phone-service.mjs && test -f package/lib/phone.mjs
+aux4 platform app phone meta
 ```
 
-```expect
+```expect:partial
+"name": "Phone"
+```
 
+## anonymous action is denied
+
+```execute
+aux4 platform app phone calls --principal '{}'
+```
+
+```expect:partial
+Sign in with your aux4 account
 ```
